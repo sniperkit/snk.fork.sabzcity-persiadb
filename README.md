@@ -3,6 +3,9 @@ If you check any databases you can feel that all of them just add a layer to exi
 In storage engines even newest one like [LevelDB](https://github.com/google/leveldb) and [RocksDB](https://github.com/facebook/rocksdb) have some fundemental problem e.g. they build in top of exiting FileSystems as defualts!!
 Some NewSQLs like [Cockroach](https://github.com/cockroachdb/cockroach), [arangodb](https://github.com/arangodb/arangodb), [elassandra](https://github.com/strapdata/elassandra) have not same but god in some use cases.
 
+## Production Ready!?
+This package is under development and not ready to use in real production. It can have breakable changes until version 1 release.
+But we are glad to hear your experience or idea about this package.
 
 ## Services
 - Storage engine (use HHD, SSD)
@@ -33,8 +36,8 @@ We don't want to use [FileSystems](https://en.wikipedia.org/wiki/File_system) fo
 
 
 ### Object data structure
-- UUID
 - MetaData
+    - Object UUID
     - TAGS (like tables in RDBMS or folder structure in FS)
     - Data created
     - Last Version UUID
@@ -43,7 +46,7 @@ We don't want to use [FileSystems](https://en.wikipedia.org/wiki/File_system) fo
     - MIME
     - Other Replicated UUID & domain, 
     - Request Log (UUID of owner or modified user, ...)
-- object data
+- Data
 
 
 ### Storage Engine API
@@ -62,6 +65,9 @@ We don't want to use [FileSystems](https://en.wikipedia.org/wiki/File_system) fo
 ## Database Library
 We have all futures like ACID, transaction, join (normalize data), in library layer. But we dont suggest to use normalize data becuase of data mining.
 We don't need row lock for transaction query becuase we don't have update data in SE layer.
+
+### Logics
+- Compress & uncompress data by MIME
 
 ### APIs
 - Get an object by UUID
