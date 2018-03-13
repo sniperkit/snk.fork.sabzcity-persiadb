@@ -29,16 +29,14 @@ There is no update data! Just have write, get and delete in storage engine layer
     - TAGS (like tables in RDBMS or folder structure in FS)
     - Data created
     - Last Version UUID
-    - Data Version
     - Indexed(bool)
     - MIME
-    - Other Replicated UUID & domain, 
 - Data
 
 
 ## Database Library
 We have all futures like ACID, transaction, join (normalize data), in library layer. But we dont suggest to use normalize data becuase of data mining.
-We don't need row lock for transaction query becuase we don't have update data in SE layer.
+We don't need row lock for transaction query becuase we don't use update data in SE layer.
 
 ### Logics
 - Compress & uncompress data by MIME
@@ -48,3 +46,12 @@ We don't need row lock for transaction query becuase we don't have update data i
 - Get by index query. return object UUID or object data as developer requested.
 - Write object as raw data
 - Write object and index data (part or full)
+- If write new version of object, declare how many of that object must have version. e.g. 3 means just 3 version of that object must be in storage. 0 means no limit.
+- Read priority. 0 to 10. 10 means very high read need and use SSD storages. We have future plan to automated this by statics.
+- Replication
+    - 000: no replication
+    - 001: replicate once on the same rack
+    - 010: replicate once on a different rack, but same data center
+    - 100: replicate once on a different data center
+    - 200: replicate twice on two different data center
+    - 110: replicate once on a different rack, and once on a different data center
