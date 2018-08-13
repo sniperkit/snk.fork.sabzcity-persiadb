@@ -13,22 +13,3 @@
 // limitations under the License.
 
 package persiadb
-
-// DBR is request||response strucrure to||from database
-type DBR struct {
-	MetaData []*MetaData
-	Data     []*Data
-}
-
-// MetaData :
-type MetaData struct {
-	ObjectUUID  string   // UUID of Record
-	TAGS        []string // Like tables in RDBMS or folder structure in FS
-	DataCreated uint     // Use
-	Indexed     bool     //
-	MIME        string   //
-	Purge       bool     // Set it true if developer want to delete record!
-}
-
-// Data :
-type Data interface{}

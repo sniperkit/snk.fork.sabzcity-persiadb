@@ -24,15 +24,7 @@ There is no update data! Just have write, get and delete in storage engine layer
 
 ### Object data structure
 - MetaData
-    - Object UUID
-    - UUID of owner or modifier user
-    - TAGS (like tables in RDBMS or folder structure in FS)
-    - Data created
-    - Last Version UUID
-    - Indexed(bool)
-    - MIME
 - Data
-
 
 ## Database Library
 We have all futures like ACID, transaction, join (normalize data), in library layer. But we dont suggest to use normalize data becuase of data mining.

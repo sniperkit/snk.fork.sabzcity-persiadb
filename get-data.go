@@ -14,23 +14,23 @@
 
 package persiadb
 
-// GetDataWithMetaData is func to retrieve data with related metadata.
-// args can be UUID, TAGS, ...
-func GetDataWithMetaData(args ...interface{}) (DBR, error) {
+// GetData is func to retrieve data with related metadata.
+// args can be any indexed data e.g. UUID, TAGS, ...
+func GetData(args ...interface{}) (*DBR, error) {
 	response := DBR{}
-	return response, nil
+	return &response, nil
 }
 
 // GetDataWithoutMetaData is func to retrieve data without related metadata.
-// args can be UUID, TAGS, ...
-func GetDataWithoutMetaData(args ...interface{}) (DBR, error) {
+// args can be any indexed data e.g. UUID, TAGS, ...
+func GetDataWithoutMetaData(args ...interface{}) (*DBR, error) {
 	response := DBR{}
-	return response, nil
+	return &response, nil
 }
 
 // GetMetaData is func to retrieve related metadata to object.
-// args can be UUID, TAGS, ...
-func GetMetaData(args ...interface{}) (DBR, error) {
+// args can be any indexed data e.g. UUID, TAGS, ...
+func GetMetaData(args ...interface{}) (*DBR, error) {
 	response := DBR{}
-	return response, nil
+	return &response, nil
 }

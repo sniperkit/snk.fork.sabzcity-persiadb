@@ -24,9 +24,10 @@ import (
 // Use MySQL as storage for start. when PersiaOS released we switch to it.
 
 // AddData to key-value storage and index object data if needed.
-func AddData(r DBR) error {
+func AddData(r *DBR, update bool, Priority uint8, ReplicationNum uint8) error {
 	// Ready requests to send to storage engines.
 	// If multi requestsend as one request it means developer need transaction!
+	// !!!!!TODO!!!!! We can't just return error in transaction.
 	for i, metaData := range r.MetaData {
 		// Check if developer want to index data.
 		if metaData.Indexed {

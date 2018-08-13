@@ -31,9 +31,14 @@ var DBC *sql.DB
 // Use MySQL as storage for start. when PersiaOS released we switch to it.
 // Open first connection to database and keep it in DBC for future use.
 func init() {
+	token := microservice.MSDetails.ReleaseToken
+	if microservice.MSDetails.ReleaseToken == "" {
+		token = "test"
+	}
+
 	// Connect to the database.
 	// MySQL Connection is ::> UserName + ":" + Password + "@" + IP + ":" + Port + "/" + DBName + "?parseTime=true&multiStatements=true"
-	DBC, err := sql.Open("mysql", microservice.MSDetails.ReleaseToken+":"+microservice.MSDetails.ReleaseToken+"@"+"/sabzcity?parseTime=true&multiStatements=true")
+	DBC, err := sql.Open("mysql", token+":"+token+"@"+"/sabzcity?parseTime=true&multiStatements=true")
 	if err != nil {
 		log.Fatal(errors.AddInformation(errors.DatabaseConnectionError, map[string]interface{}{"ExtraInfo": err}))
 	}
