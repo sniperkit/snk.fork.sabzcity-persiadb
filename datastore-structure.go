@@ -20,14 +20,16 @@ type DBR struct {
 	Data     []*Data
 }
 
-// MetaData :
+// MetaData : We don't store structure, we must store this data in this order & type.
 type MetaData struct {
-	ObjectUUID  string   // UUID of Record
-	TAGS        []string // Like tables in RDBMS or folder structure in FS
-	DataCreated uint     // Use
+	Version     uint8    // Like many protocol we must indicate version for future improvment in structure.
+	ObjectUUID  string   // Fixed sized UUID of Record
+	MIME        uint16   // media-types.go
+	Charset     uint8    // utf8, ...
+	DataCreated uint     //
 	Indexed     bool     //
-	MIME        string   //
 	Purge       bool     // Set it true if developer want to delete record!
+	TAGS        []string // Like tables in RDBMS or folder structure in FS
 }
 
 // Data :
