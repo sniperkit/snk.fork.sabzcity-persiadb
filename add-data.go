@@ -24,25 +24,24 @@ import (
 // Use MySQL as storage for start. when PersiaOS released we switch to it.
 
 // AddData to key-value storage and index object data if needed.
-func AddData(r *DBR, update bool, Priority uint8, ReplicationNum uint8) error {
+// If Object UUID exist, It means developer need object history!
+func AddData(r *DBR) error {
 	// Ready requests to send to storage engines.
 	// If multi requestsend as one request it means developer need transaction!
-	// !!!!!TODO!!!!! We can't just return error in transaction.
+	// !!!!!TODO!!!!! We can't just return error inside transaction requests!
 	for i, metaData := range r.MetaData {
+		// Check or calculate DataSize
+
 		// Check if developer want to index data.
 		if metaData.Indexed {
-			// parse data by Mime.
+			// parse data by MediaType.
 		}
 
 		// Send parsed data and metadata to index layer
 
-		// Check priority and choose best storage
-
-		// Check replication number and send object to needed storage.
-
 		// !!!!!TODO
 		// MySQL is just to start!
-		result, err := DBC.Exec(strings.Replace(`INSERT INTO {Table} (MetaData, Data) VALUES (?, ?);`, "{Table}", metaData.TAGS[0], -1), metaData, r.Data[i])
+		result, err := DBC.Exec(strings.Replace(`INSERT INTO {Table} (MetaData, Data) VALUES (?, ?);`, "{Table}", metaData.Tags[0], -1), metaData, r.Data[i])
 		if err == driver.ErrBadConn {
 			return errors.CantPrepareStatement
 		} else if err != nil { // TODO : Check This case for other scenario!

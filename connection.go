@@ -22,7 +22,6 @@ import (
 
 	"github.com/SabzCity/go-library/errors"
 	"github.com/SabzCity/go-library/log"
-	"github.com/SabzCity/go-library/microservice"
 )
 
 // DBC is DataBase connections pools.
@@ -31,12 +30,10 @@ var DBC *sql.DB
 // Use MySQL as storage for start. when PersiaOS released we switch to it.
 // Open first connection to database and keep it in DBC for future use.
 func init() {
-	token := microservice.MSDetails.ReleaseToken
-	if microservice.MSDetails.ReleaseToken == "" {
-		token = "test"
-	}
+	// Code Repo must authenticate itself and get token from related services.
+	token := ""
 
-	// Connect to the database.
+	// Check replication number and make connection to needed storages.
 	// MySQL Connection is ::> UserName + ":" + Password + "@" + IP + ":" + Port + "/" + DBName + "?parseTime=true&multiStatements=true"
 	DBC, err := sql.Open("mysql", token+":"+token+"@"+"/sabzcity?parseTime=true&multiStatements=true")
 	if err != nil {

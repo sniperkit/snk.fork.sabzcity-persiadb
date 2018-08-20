@@ -14,23 +14,31 @@
 
 package persiadb
 
+// Condition :
+type Condition struct {
+	FieldName         string
+	FieldValue        string
+	FieldOperator     uint8 // = , > , < , != , >= , <= , LIKE , 
+	ConditionOperator uint8 // AND, OR and NOT
+}
+
 // GetData is func to retrieve data with related metadata.
 // args can be any indexed data e.g. UUID, TAGS, ...
-func GetData(args ...interface{}) (*DBR, error) {
+func GetData(Tags []string, args []Condition) (*DBR, error) {
 	response := DBR{}
 	return &response, nil
 }
 
 // GetDataWithoutMetaData is func to retrieve data without related metadata.
 // args can be any indexed data e.g. UUID, TAGS, ...
-func GetDataWithoutMetaData(args ...interface{}) (*DBR, error) {
+func GetDataWithoutMetaData(Tags []string, args []Condition) (*DBR, error) {
 	response := DBR{}
 	return &response, nil
 }
 
 // GetMetaData is func to retrieve related metadata to object.
 // args can be any indexed data e.g. UUID, TAGS, ...
-func GetMetaData(args ...interface{}) (*DBR, error) {
+func GetMetaData(Tags []string, args []Condition) (*DBR, error) {
 	response := DBR{}
 	return &response, nil
 }

@@ -14,4 +14,4 @@
 
 package persiadb
 
-// Delete data just by ObjectUUID
+// Update data just by ObjectUUID
