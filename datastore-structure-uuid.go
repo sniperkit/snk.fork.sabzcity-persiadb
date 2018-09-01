@@ -14,4 +14,13 @@
 
 package persiadb
 
-// Delete data just by ObjectUUID
+// UUIDIndex is uuid location index structure
+type UUIDIndex struct {
+	UUID            string
+	StorageLocation []struct { // Array is for replication
+		DeviceID             string
+		DeveiceLocationStart string
+		DeveiceLocationEnd   string
+	}
+	Date uint64 // Date of data creation in UnixNano()
+}

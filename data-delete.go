@@ -14,4 +14,13 @@
 
 package persiadb
 
-// Update data just by ObjectUUID
+// ReqDeleteData : The request structure of "DeleteData()"
+type ReqDeleteData struct {
+	ObjectUUID []string
+	// Date uint64
+}
+
+// DeleteData is func to delete data with related metadata by ObjectUUID.
+func DeleteData(logicRequest *ReqDeleteData) error {
+	return nil
+}

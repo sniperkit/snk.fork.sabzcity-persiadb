@@ -16,36 +16,35 @@ package persiadb
 
 import (
 	"database/sql/driver"
-	"strings"
-
-	"github.com/SabzCity/go-library/errors"
 )
 
-// Use MySQL as storage for start. when PersiaOS released we switch to it.
+// ReqAddData : The response structure of "AddData()".
+type ReqAddData struct {
+	MetaData []*MetaData
+	Data     []*Data
+}
 
 // AddData to key-value storage and index object data if needed.
 // If Object UUID exist, It means developer need object history!
-func AddData(r *DBR) error {
+func AddData(logicRequest *ReqAddData) error {
 	// Ready requests to send to storage engines.
 	// If multi requestsend as one request it means developer need transaction!
 	// !!!!!TODO!!!!! We can't just return error inside transaction requests!
-	for i, metaData := range r.MetaData {
+	for i, metaData := range logicRequest.MetaData {
 		// Check or calculate DataSize
 
-		// Check if developer want to index data.
-		if metaData.Indexed {
-			// parse data by MediaType.
-		}
+		// Check if we can index data.
+		// parse data by MediaType.
 
 		// Send parsed data and metadata to index layer
 
 		// !!!!!TODO
 		// MySQL is just to start!
-		result, err := DBC.Exec(strings.Replace(`INSERT INTO {Table} (MetaData, Data) VALUES (?, ?);`, "{Table}", metaData.Tags[0], -1), metaData, r.Data[i])
+		result, err := DBC.Exec(`INSERT INTO {Table} (MetaData, Data) VALUES (?, ?);`, metaData, logicRequest.Data[i])
 		if err == driver.ErrBadConn {
-			return errors.CantPrepareStatement
+			return CantPrepareStatement
 		} else if err != nil { // TODO : Check This case for other scenario!
-			return errors.ContentAlreadyExist
+			return ContentAlreadyExist
 		}
 
 		// Check storage engine responses
@@ -54,7 +53,7 @@ func AddData(r *DBR) error {
 			// Check error
 		}
 		if rowsAffected < 1 {
-			return errors.StoringDataNotComplete
+			return StoringDataNotComplete
 		}
 
 		// lastInsertID, err := result.LastInsertId()

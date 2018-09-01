@@ -20,7 +20,7 @@ import (
 	// For layers architecture we have to add MySQL package in here.
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/SabzCity/go-library/errors"
+	chaparkhane "github.com/SabzCity/ChaparKhane"
 	"github.com/SabzCity/go-library/log"
 )
 
@@ -37,11 +37,11 @@ func init() {
 	// MySQL Connection is ::> UserName + ":" + Password + "@" + IP + ":" + Port + "/" + DBName + "?parseTime=true&multiStatements=true"
 	DBC, err := sql.Open("mysql", token+":"+token+"@"+"/sabzcity?parseTime=true&multiStatements=true")
 	if err != nil {
-		log.Fatal(errors.AddInformation(errors.DatabaseConnectionError, map[string]interface{}{"ExtraInfo": err}))
+		log.Fatal(chaparkhane.AddInformationToError(DatabaseConnectionError, map[string]interface{}{"ExtraInfo": err}))
 	}
 
 	err = DBC.Ping()
 	if err != nil {
-		log.Fatal(errors.AddInformation(errors.DatabasePingOut, map[string]interface{}{"ExtraInfo": err}))
+		log.Fatal(chaparkhane.AddInformationToError(DatabasePingOut, map[string]interface{}{"ExtraInfo": err}))
 	}
 }

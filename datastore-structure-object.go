@@ -14,23 +14,12 @@
 
 package persiadb
 
-// DBR is request||response strucrure to||from database
-type DBR struct {
-	MetaData []*MetaData
-	Data     []*Data
-}
-
 // MetaData : We don't store structure, we must store this data in this order & type.
 type MetaData struct {
-	MetaDataVersion uint8    // Like many protocol we must indicate metada version for future improvment in structure.
-	DataVersion     uint8    // Like many protocol we must indicate data version for future improvment in structure.
-	ObjectUUID      string   // Fixed sized UUID of Record
-	MediaType       uint16   // media-types.go
-	Charset         uint8    // UTF8, ASCII, ...
-	DataCreated     uint     //
-	Indexed         bool     //
-	Purge           bool     // Set it true if developer want to delete record!
-	Tags            []string // Like tables in RDBMS or folder structure in FS
+	DataVersion     uint16 // Indicate data structure version for future improvment.
+	ObjectUUID      string // Fixed sized UUID of Record
+	MediaType       uint16 // media-types.go
+	Date            uint64 // Date of data creation in UnixNano()
 }
 
 // Data :
