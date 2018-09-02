@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2018 SabzCity
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +21,10 @@ package persiadb
 
 import (
 	"database/sql"
-
 	// For layers architecture we have to add MySQL package in here.
-	_ "github.com/go-sql-driver/mysql"
-
 	chaparkhane "github.com/SabzCity/ChaparKhane"
 	"github.com/SabzCity/go-library/log"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // DBC is DataBase connections pools.

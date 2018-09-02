@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2018 SabzCity
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +34,7 @@ type ResGetData struct {
 // GetData is func to retrieve data with related metadata by ObjectUUID.
 func GetData(logicRequest *ReqGetData) (*ResGetData, error) {
 	logicResponse := ResGetData{}
-	
+
 	// Check Cache first by UUID & Date
 
 	// Retrive Data from storage engine.
